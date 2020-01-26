@@ -1,15 +1,17 @@
-FROM nginx:latest
+FROM debian:buster
 LABEL Maintainer="Daniel Leite <danielhtleite@gmail.com>"
 
 # Variables
 ENV VOL=/var/www/html
 
-# Install packages
-RUN yum install -y --setopt=tsflags=nodocs \
-    git nginx supervisor curl \
-    php-phar php-json php-iconv php-mysql php-gd php-mbstring php-bcmath php-curl php-snmp php-ldap php-pcntl php-fpm
+# Install package base
+RUN apt update && apt install -y lsb-release ca-certificates apt-transport-https gnupg2 wget && \
+    wget -q https://packages.sury.org/php/apt.gpg -O- | apt-key add - && \
+    echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list
 
-RUN yum remove -y openssh* && yum clean all && rm -rf /tmp/*
+# Install packages
+RUN apt install -y --no-install-recommends git nginx supervisor curl \
+    php7.3-phar php7.3-json php7.3-iconv php7.3-mysql php7.3-gd php7.3-mbstring php7.3-bcmath php7.3-curl php7.3-snmp php7.3-ldap php7.3-cli php7.3-fpm
 
 # Configure nginx
 COPY config/nginx.conf /etc/nginx/nginx.conf
@@ -18,15 +20,15 @@ COPY config/nginx.conf /etc/nginx/nginx.conf
 RUN rm -rf /etc/nginx/conf.d
 
 # Configure PHP-FPM
-COPY config/fpm-pool.conf /etc/php/php-fpm.d/www.conf
-#COPY config/php.ini /etc/php/conf.d/custom.ini
+COPY config/fpm-pool.conf /etc/php/7.3/fpm/pool.d/www.conf
+COPY config/php.ini /etc/php/7.3/cli/php.ini
+COPY config/php.ini /etc/php/7.3/fpm/php.ini
 
 # Configure supervisord
-COPY config/supervisord.conf /etc/supervisord.conf
+COPY config/supervisord.conf /etc/supervisor/supervisord.conf
 
 # Make sure files/folders needed by the processes are accessable when they run under the nobody user
-#RUN chown -R nginx.nginx /run && \
-#  chown -R nginx.nginx /var/lib/nginx && \
+#RUN chown -R nginx.nginx /run && \  
 #  chown -R nginx.nginx /var/tmp && \
 #  chown -R nginx.nginx /var/log
 
