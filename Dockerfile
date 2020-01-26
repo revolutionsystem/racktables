@@ -16,10 +16,10 @@ RUN rm -rf /etc/nginx/conf.d
 
 # Configure PHP-FPM
 COPY config/fpm-pool.conf /etc/php7/php-fpm.d/www.conf
-COPY config/php.ini /etc/php7/conf.d/custom.ini
+COPY config/php.ini /etc/php7/php.ini
 
 # Configure supervisord
-COPY config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+COPY config/supervisor.conf /etc/supervisor/supervisor.conf
 
 # Make sure files/folders needed by the processes are accessable when they run under the nobody user
 RUN chown -R nginx.nginx /run && \
@@ -46,4 +46,4 @@ EXPOSE 80
 ENTRYPOINT ["/entrypoint.sh"]
 
 # Let supervisord start nginx & php-fpm
-CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/supervisor.conf"]
