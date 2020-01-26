@@ -1,4 +1,4 @@
-FROM alpine:3.11
+FROM alpine:3.9
 LABEL Maintainer="Daniel Leite <danielhtleite@gmail.com>"
 
 # Variables
