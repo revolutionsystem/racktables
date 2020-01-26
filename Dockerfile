@@ -6,7 +6,7 @@ ENV VOL=/var/www/html
 
 # Install packages
 RUN apt update && apt install -y --no-install-recommends \
-    git nginx supervisor curl \
+    apt-transport-https git nginx supervisor curl \
     php7.3-phar php7.3-json php7.3-iconv php7.3-mysql php7.3-gd php7.3-mbstring php7.3-bcmath php7.3-curl php7.3-snmp php7.3-ldap php7.3-cli php7.3-fpm
 
 # Configure nginx
