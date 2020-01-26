@@ -11,8 +11,10 @@ if [ ! -f /var/www/html/inc/secret.php ] ; then
         mv racktables/wwwroot/* /var/www/html/
         touch /var/www/html/inc/secret.php
         chown -R nginx.nginx /var/www/html
+        
+        echo 'Initialize Container Server'
 else
         echo "Racktables is ready."        
 fi
 
-/usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf
+exec "$@"
