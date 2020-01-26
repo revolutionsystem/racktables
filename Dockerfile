@@ -15,7 +15,7 @@ COPY config/nginx.conf /etc/nginx/nginx.conf
 RUN rm -rf /etc/nginx/conf.d
 
 # Configure PHP-FPM
-COPY config/fpm-pool.conf /etc/php7/php-fpm.d/www.conf
+COPY config/php-fpm.conf /etc/php7/php-fpm.conf
 COPY config/php.ini /etc/php7/php.ini
 
 # Configure supervisord
