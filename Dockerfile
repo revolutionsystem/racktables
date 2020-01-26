@@ -1,4 +1,4 @@
-FROM alpine:3.9
+FROM alpine:3.10
 LABEL Maintainer="Daniel Leite <danielhtleite@gmail.com>"
 
 # Variables
@@ -28,10 +28,10 @@ RUN chown -R nginx.nginx /run && \
   chown -R nginx.nginx /var/log
 
 # Add Racktables Application
-COPY config/entrypoint.sh ./
+COPY config/entrypoint.sh /
 
 # Config exec install permission
-RUN chmod +x ./entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
 # Make the document root a volume
 VOLUME ${VOL}
