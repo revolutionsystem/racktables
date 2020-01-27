@@ -30,7 +30,7 @@ RUN chown -R nginx.nginx /run && \
   chown -R nginx.nginx /var/log
 
 # Copy plugin search network
-COPY plugins/rt-server-client /etc/
+COPY plugins/rt-server-client /etc
 
 # Add Racktables Application
 COPY config/entrypoint.sh /
