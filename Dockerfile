@@ -29,10 +29,6 @@ RUN chown -R nginx.nginx /run && \
   chown -R nginx.nginx /var/tmp && \
   chown -R nginx.nginx /var/log
 
-# Copy plugin search network
-RUN mkdir /etc/rt-server-client
-COPY plugins/rt-server-client /etc/rt-server-client
-
 # Add Racktables Application
 COPY config/entrypoint.sh /
 
