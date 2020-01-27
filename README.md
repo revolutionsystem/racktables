@@ -12,8 +12,8 @@ Repository: https://github.com/revolutionsystem/racktables
 * Optimized to only use resources when there's traffic (by using PHP-FPM's ondemand PM)
 
 
-[![Docker Pulls](https://img.shields.io/docker/pulls/trafex/alpine-nginx-php7.svg)](https://hub.docker.com/r/revolutionsystem/racktables)
-[![Docker image layers](https://images.microbadger.com/badges/image/trafex/alpine-nginx-php7.svg)](https://microbadger.com/images/revolutionsystem/racktables)
+[![Docker Pulls](https://img.shields.io/docker/pulls/revolutionsystem/racktables.svg)](https://hub.docker.com/r/revolutionsystem/racktables)
+[![Docker image layers](https://images.microbadger.com/badges/image/revolutionsystem/racktables.svg)](https://microbadger.com/images/revolutionsystem/racktables)
 ![nginx 1.16.1](https://img.shields.io/badge/nginx-1.16-brightgreen.svg)
 ![php 7.3](https://img.shields.io/badge/php-7.3-brightgreen.svg)
 ![License MIT](https://img.shields.io/badge/license-MIT-blue.svg)
