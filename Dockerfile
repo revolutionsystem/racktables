@@ -6,9 +6,7 @@ ENV VOL=/var/www/html
 
 # Install packages
 RUN apk add --no-cache ca-certificates git nginx supervisor curl \
-    php7 php7-phar php7-json php7-iconv php7-openssl php7-pdo_mysql \
-    php7-mysqlnd php7-mysqli php7-gd php7-mbstring php7-bcmath php7-curl \
-    php7-snmp php7-ldap php7-pcntl php7-fpm php-session
+    php7 php7-phar php7-json php7-iconv php7-openssl php7-pdo_mysql php7-mysqlnd php7-mysqli php7-gd php7-mbstring php7-bcmath php7-curl php7-snmp php7-ldap php7-pcntl php7-fpm php-session
 
 # Configure nginx
 COPY config/nginx.conf /etc/nginx/nginx.conf
@@ -18,6 +16,8 @@ RUN rm -rf /etc/nginx/conf.d
 
 # Configure PHP-FPM
 COPY config/www.conf /etc/php7/php-fpm.d/www.conf
+
+# Configure PHP-INI
 COPY config/php.ini /etc/php7/php.ini
 
 # Configure supervisord
